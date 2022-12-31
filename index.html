@@ -8,13 +8,44 @@
     <link rel="stylesheet" href="./assets/css/reset.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
+
 <body>
     <nav>
         <div class="score"><a href="scores.html">View Highscores</a></div>
-        <div class="timer"><span id="countdown"></span></div>
+        <div class="countdown"><span id="time">0</span></div>
     </nav>
     <div class="container">
-        <h1>Code Quiz!</h1>
+        <!-- div containing the info for the start page -->
+        <div id="start-page" class="start">
+            <h1>Code Quiz!</h1>
+            <p>
+                This quiz contains questions related to the fundamentals of JavaScript. You will have 45 seconds to answer all 4 questions, but 5 seconds will be taken off your time for every wrong answer. Go ahead and give it a try to test your knowledge! 
+            </p>
+            <button id="start">Start Quiz!</button>
+        </div>
+
+        <!-- div containing all of the questions and their status before start button is clicked -->
+        <div id="questions" class="hide">
+            <h2 id="title"></h2>
+            <div id="choices" class="choices"></div>
+        </div>
+
+        <!-- div containing information for the right or wrong feedback -->
+        <div id="right-wrong" class="feedback hide">
+
+        </div>
+
+        <!-- div containing info for the end page -->
+        <div id="end-page" class="hide">
+            <h2>You Finished!</h2>
+            <p>Final score: <span id="final-score"></span></p>
+            <p>
+                Your Initials: <input type="text" placeholder="Initials here" id="initials" max="3" />
+                <button id="submit">Submit Initials</button>
+            </p>
+        </div>
+
+
     </div>
     <script src="questions.js"></script>
     <script src="script.js"></script>
