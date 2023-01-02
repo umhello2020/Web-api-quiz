@@ -127,11 +127,41 @@ function endQuiz () {
     finalScoreEl.textContent = time;
 }
 
+// function to store highscores
+function storeHigh () {
+    // assign a value for initial input (trim to remove excess space around user input value)
+    let initials = initialsEl.value.trim();
+
+    // conditional statement to save initials to storage 
+    if (initials !== null) {
+        // getting stored initials or storing new initials to empty array
+        let scores = JSON.parse(localStorage.getItem('scores')) || [];
+
+        // new object to contain user's new scores (their score is equal to remaining time and their initials value is equal to their initial input)
+        let newScores = {
+            scores : time,
+            initials : initials
+        }
+
+        // pushing to local storing
+        scores.push(newScores);
+        window.localStorage.setItem('scores', JSON.stringify(scores));
+
+    };
+}
+
+// button to start quiz
+startBtnEl.onclick = startQuiz;
+
+// button to select choice
+choicesEl.onclick = clickBtn;
+
+// button to submit initials
+initialsEl.onclick = storeHigh;
+
 
 
 // left to do
-// 2. function to end the quiz
-// 3. function finalTime to update time and check if user ran out of time
 // 4. function to save the highscore to storage
 // 5. function to save score if user presses enter instead of clicking the button
 // 6. create event listeners for submit and start buttons(click)
