@@ -1,9 +1,9 @@
 // variables to contain quiz info globally
 let liveQuestionIndex = 0;
-let time = questions.length * 5;
-let countdown;
+let time = questions.length * 10;
+let countdownId;
 
-// DOM variables
+// global DOM variables
 let questionsEl = document.getElementById('questions');
 let choicesEl = document.getElementById('choices');
 let countdownEl = document.getElementById('countdown');
@@ -12,11 +12,11 @@ let startBtnEl = document.getElementById('start');
 let submitBtnEl = document.getElementById('submit');
 let initialsEl = document.getElementById('initials');
 
-//function that begins the quiz
+// function that begins the quiz
 function startQuiz () {
     //hides start page
-    let startscreenEl = document.getElementById('start-screen');
-    startscreenEl.setAttribute('class', 'hide');
+    let startPageEl = document.getElementById('start-page');
+    startPageEl.setAttribute('class', 'hide');
 
     //activates question page
     questionsEl.removeAttribute('class');
@@ -41,7 +41,7 @@ function startQuestions() {
     // empty string to clear choices after previous run through
     choicesEl = '';
 
-    // for loop to cycle through choices with button for each choice
+    // for loop to cycle through choices with button for each choice and sets a value for it
     for (let i = 0; i < liveQuestion.choices.length; i++) {
         let choice = liveQuestion.choices[i];
         let choiceNode = document.createAttribute('button');
@@ -55,8 +55,81 @@ function startQuestions() {
         
 }
 
+// function that manages clicking on choice 
+function clickBtn (event) {
+    // create button element 
+    let buttonEl = event.target;
+
+    // conditional statements for the buttons
+    if (buttonEl.value !== questions[liveQuestionIndex].answer) {
+       // first subtract from time
+       time -= 5;
+
+       // time cannot be negative since game ends at zero
+       if (time < 0) {
+        time = 0
+       };
+
+       // countdown must reflect changes
+       countdownEl.textContent = time;
+
+       // feedback to tell if answer is wrong
+        rightWrongEl.textContent = 'Wrong!';
+        
+        
+    } else {
+        // feedback display correct
+        rightWrongEl.textContent = 'Correct!';
+    };
+
+    // give feedback a class to manipulate
+    rightWrongEl.setAttribute('class', 'right-wrong');
+    // set timeout function so feedback does not permanently stay on screen for less than a second
+    setTimeout(function() {
+        rightWrongEl.setAttribute('right-wrong', 'hide');
+    }, 750);
+
+    // move onto next question
+    liveQuestionIndex++;
+
+    // conditional statement if time ran out or end of quiz
+    if (time = 0 || liveQuestionIndex == questions.length) {
+        endQuiz();
+    } else {
+        startQuestions();
+    };
+}
+ 
+// function to ensure time counts down and check for 0
+function finalTime () {
+    // conditional statement to update time
+    if (time > 0) {
+        time--;
+        countdownEl.textContent = time;
+    } else if (time <= 0) {
+        endQuiz ();
+    };
+}
+
+// function to end the quiz
+function endQuiz () {
+    // hide question page and display end page
+    questionsEl.setAttribute('class', 'hide');
+
+    let endPageEl = document.getElementById('end-page');
+    endPageEl.removeAttribute('class');
+
+    // clear countdown on page
+    clearInterval(countdownId); 
+
+    // display final score as remaining time
+    finalScoreEl = document.getElementById
+    finalScoreEl.textContent = time;
+}
+
+
+
 // left to do
-// 1. create function to manage clicking on the choice and affecting the timer and calling the feedback
 // 2. function to end the quiz
 // 3. function finalTime to update time and check if user ran out of time
 // 4. function to save the highscore to storage
