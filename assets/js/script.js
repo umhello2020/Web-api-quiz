@@ -13,7 +13,7 @@ let submitBtnEl = document.getElementById('submit');
 let initialsEl = document.getElementById('initials');
 
 // function that begins the quiz
-function startQuiz () {
+function startQuiz() {
     //hides start page
     let startPageEl = document.getElementById('start-page');
     startPageEl.setAttribute('class', 'hide');
@@ -39,12 +39,12 @@ function startQuestions() {
     titleEl.textContent = liveQuestion.title;
 
     // empty string to clear choices after previous run through
-    choicesEl = '';
+    choicesEl.innerHTML = '';
 
     // for loop to cycle through choices with button for each choice and sets a value for it
     for (let i = 0; i < liveQuestion.choices.length; i++) {
         let choice = liveQuestion.choices[i];
-        let choiceNode = document.createAttribute('button');
+        let choiceNode = document.createElement('button');
         choiceNode.setAttribute('class', 'choice');
         choiceNode.setAttribute('value', choice)
         
@@ -56,18 +56,18 @@ function startQuestions() {
 }
 
 // function that manages clicking on choice 
-function clickBtn (event) {
+function clickBtn(event) {
     // create button element 
     let buttonEl = event.target;
 
     // conditional statements for the buttons
     if (buttonEl.value !== questions[liveQuestionIndex].answer) {
        // first subtract from time
-       time -= 5;
+       time -= 10;
 
        // time cannot be negative since game ends at zero
        if (time < 0) {
-        time = 0
+        time = 0;
        };
 
        // countdown must reflect changes
@@ -86,7 +86,7 @@ function clickBtn (event) {
     rightWrongEl.setAttribute('class', 'right-wrong');
     // set timeout function so feedback does not permanently stay on screen for less than a second
     setTimeout(function() {
-        rightWrongEl.setAttribute('right-wrong', 'hide');
+        rightWrongEl.setAttribute('class', 'right-wrong hide');
     }, 750);
 
     // move onto next question
@@ -99,20 +99,9 @@ function clickBtn (event) {
         startQuestions();
     };
 }
- 
-// function to ensure time counts down and check for 0
-function finalTime () {
-    // conditional statement to update time
-    if (time > 0) {
-        time--;
-        countdownEl.textContent = time;
-    } else if (time <= 0) {
-        endQuiz ();
-    };
-}
 
 // function to end the quiz
-function endQuiz () {
+function endQuiz() {
     // hide question page and display end page
     questionsEl.setAttribute('class', 'hide');
 
@@ -123,12 +112,24 @@ function endQuiz () {
     clearInterval(countdownId); 
 
     // display final score as remaining time
-    finalScoreEl = document.getElementById
+    finalScoreEl = document.getElementById('final-score');
     finalScoreEl.textContent = time;
 }
 
+// function to ensure time counts down and check for 0
+function finalTime() {
+    // update time
+    time--;
+    countdownEl.textContent = time;
+
+    // conditional statement to check if time has run out
+    if (time <= 0) {
+        endQuiz();
+    };
+}
+
 // function to store highscores
-function storeHigh () {
+function storeHigh() {
     // assign a value for initial input (trim to remove excess space around user input value)
     let initials = initialsEl.value.trim();
 
@@ -150,19 +151,11 @@ function storeHigh () {
     };
 }
 
+// button to submit initials
+submitBtnEl.addEventListener('click', storeHigh);
+
 // button to start quiz
-startBtnEl.onclick = startQuiz;
+startBtnEl.addEventListener('click', startQuiz);
 
 // button to select choice
-choicesEl.onclick = clickBtn;
-
-// button to submit initials
-initialsEl.onclick = storeHigh;
-
-
-
-// left to do
-// 4. function to save the highscore to storage
-// 5. function to save score if user presses enter instead of clicking the button
-// 6. create event listeners for submit and start buttons(click)
-// 7. create event listeners for choices(click) and initials(enter key)
+choicesEl.addEventListener('click', clickBtn);

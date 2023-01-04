@@ -10,10 +10,9 @@
 </head>
 
 <body>
-    <nav>
-        <div class="score"><a href="scores.html">View Highscores</a></div>
-        <div class="countdown"><span id="time">0</span></div>
-    </nav>
+    <div class="score"><a href="scores.html">View Highscores</a></div>
+    <div class="countdown">Time: <span id="countdown">0</span></div>
+
     <div class="container">
         <!-- div containing the info for the start page -->
         <div id="start-page" class="start">
@@ -30,11 +29,6 @@
             <div id="choices" class="choices"></div>
         </div>
 
-        <!-- div containing information for the right or wrong feedback -->
-        <div id="right-wrong" class="feedback hide">
-
-        </div>
-
         <!-- div containing info for the end page -->
         <div id="end-page" class="hide">
             <h2>You Finished!</h2>
@@ -45,9 +39,12 @@
             </p>
         </div>
 
+        <!-- div containing information for the right or wrong feedback -->
+        <div id="right-wrong" class="right-wrong hide"></div>
+
 
     </div>
-    <script src="questions.js"></script>
-    <script src="script.js"></script>
+    <script src="./assets/js/questions.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
