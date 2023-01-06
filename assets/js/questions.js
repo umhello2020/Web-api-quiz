@@ -16,13 +16,13 @@ let questions = [
     {
         title: 'Which of these is not a primitive data type?',
         choices: [' boolean', ' integer', ' string', ' conditional'],
-        answer: 'conditional',
+        answer: ' conditional',
     },
 
     {
         title: 'Where should the script link be at in an HTML page?',
         choices: [' in the header', ' at the bottom of the body', ' in the title', ' in the metadata'],
         answer: ' at the bottom of the body',
-    },
+    }
    
 ];
