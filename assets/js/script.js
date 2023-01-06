@@ -44,13 +44,13 @@ function startQuestions() {
     // for loop to cycle through choices with button for each choice and sets a value for it
     for (let i = 0; i < liveQuestion.choices.length; i++) {
         let choice = liveQuestion.choices[i];
-        let choiceNode = document.createElement('button');
-        choiceNode.setAttribute('class', 'choice');
-        choiceNode.setAttribute('value', choice)
+        let choiceBtn = document.createElement('button');
+        choiceBtn.setAttribute('class', 'choices');
+        choiceBtn.setAttribute('value', choice);
         
         //puts number in front of the choice option and displays it on screen
-        choiceNode.textContent = i + 1 + '.' + choice;
-        choicesEl.appendChild(choiceNode);
+        choiceBtn.textContent = i + 1 + '.' + choice;
+        choicesEl.appendChild(choiceBtn);
     };
         
 }
@@ -93,7 +93,7 @@ function clickBtn(event) {
     liveQuestionIndex++;
 
     // conditional statement if time ran out or end of quiz
-    if (time = 0 || liveQuestionIndex == questions.length) {
+    if (time == 0 || liveQuestionIndex == questions.length) {
         endQuiz();
     } else {
         startQuestions();
@@ -136,20 +136,31 @@ function storeHigh() {
     // conditional statement to save initials to storage 
     if (initials !== null) {
         // getting stored initials or storing new initials to empty array
-        let scores = JSON.parse(localStorage.getItem('scores')) || [];
+        let scores = JSON.parse(window.localStorage.getItem('scores')) || [];
 
         // new object to contain user's new scores (their score is equal to remaining time and their initials value is equal to their initial input)
         let newScores = {
-            scores : time,
-            initials : initials
+            score : time,
+            initials : initials,
         }
 
         // pushing to local storing
         scores.push(newScores);
         window.localStorage.setItem('scores', JSON.stringify(scores));
 
+        // changes window to scores page
+        window.location.href = 'scores.html';
+
     };
+
 }
+
+// if user presses enter to save intials it will still save
+function enterKey(event) {
+    if (event.key === 'Enter') {
+        storeHigh();
+    };
+};
 
 // button to submit initials
 submitBtnEl.addEventListener('click', storeHigh);
@@ -159,3 +170,6 @@ startBtnEl.addEventListener('click', startQuiz);
 
 // button to select choice
 choicesEl.addEventListener('click', clickBtn);
+
+// key event for enter button
+initialsEl.addEventListener('keyup', enterKey);
