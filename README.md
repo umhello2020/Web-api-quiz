@@ -10,6 +10,7 @@ Even though this is a basic project, I hope that all other baby developers will 
 FIND THE LINK TO THE DEPLOYED SITE HERE-- https://umhello2020.github.io/Web-api-quiz/
 
 ## Visuals
+![Screenshot_20230109_050159](https://user-images.githubusercontent.com/118483617/211425960-3f3fddc5-bf7f-4251-96db-250d159a61f2.png)
 
 
 
