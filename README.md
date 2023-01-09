@@ -11,8 +11,10 @@ FIND THE LINK TO THE DEPLOYED SITE HERE-- https://umhello2020.github.io/Web-api-
 
 ## Visuals
 ![Screenshot_20230109_050159](https://user-images.githubusercontent.com/118483617/211425960-3f3fddc5-bf7f-4251-96db-250d159a61f2.png)
-
-
+![Screenshot_20230109_050221](https://user-images.githubusercontent.com/118483617/211426117-443b689c-743b-44a9-9bda-58da17943bdc.png)
+![Screenshot_20230109_050325](https://user-images.githubusercontent.com/118483617/211426140-36b9f61d-79ee-4745-b38e-01eeb45270a7.png)
+![Screenshot_20230109_050345](https://user-images.githubusercontent.com/118483617/211426164-0f38d410-9e1c-4c80-8300-5efff5796b64.png)
+![Screenshot_20230109_050409](https://user-images.githubusercontent.com/118483617/211426198-f840fc1a-2c6d-498e-adcb-1184637b8ec3.png)
 
 ## Installation
 N/A
