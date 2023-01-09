@@ -79,7 +79,7 @@ function clickBtn(event) {
         
     } else {
         // feedback display correct
-        rightWrongEl.textContent = 'Correct!';
+        rightWrongEl.textContent = 'Right!';
     };
 
     // give feedback a class to manipulate
