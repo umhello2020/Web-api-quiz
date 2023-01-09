@@ -6,8 +6,8 @@ I developed questions in this quiz that I believed covered some of the basic fun
 Being able to explain the code to my colleagues and work through it with them has really helped me to grasp a better understanding of how everything works together.
 Even though this is a basic project, I hope that all other baby developers will rejoice with me.
 
-## Deplyed Link
-FIND THE LINK TO THE DEPLOYED SITE HERE-- 
+## Deployed Link
+FIND THE LINK TO THE DEPLOYED SITE HERE-- https://umhello2020.github.io/Web-api-quiz/
 
 ## Visuals
 
